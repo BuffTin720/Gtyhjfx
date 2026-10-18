@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#171819"><title>Монитор — Telegram Mini App</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#171819;--panel:#202123;--panel2:#252628;--line:#343537;--muted:#96989e;--text:#f4f4f5;--yellow:#e9c64d;--red:#f36b43;--green:#8bbf9a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.4 system-ui,-apple-system,Segoe UI,sans-serif;padding:env(safe-area-inset-top) 0 calc(86px + env(safe-area-inset-bottom));min-height:100vh}
+header{position:sticky;top:0;z-index:5;background:#171819ee;backdrop-filter:blur(14px);padding:18px 18px 12px;border-bottom:1px solid #252628;display:flex;align-items:center;justify-content:space-between}header h1{font-size:19px;letter-spacing:.4px;margin:0;font-weight:750} .sub{color:var(--muted);font-size:12px;margin-top:3px}.status{border:1px solid var(--line);border-radius:22px;padding:7px 10px;font-size:11px;color:var(--green);white-space:nowrap}
+main{padding:14px 14px 18px;max-width:680px;margin:auto}.hero{border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#242527,#1c1d1f);padding:17px;margin-bottom:14px}.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.hero h2{font-size:17px;margin:0 0 4px}.hero p{color:#b5b6bb;font-size:12px;margin:0;max-width:280px}.shield{font-size:30px}.notice{margin-top:14px;border-radius:13px;background:#2b2c2e;padding:11px 12px;color:#c8c9cd;font-size:12px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 10px}.section-head h2{font-size:16px;margin:0}.count{font-size:12px;color:var(--muted)}.search{display:flex;gap:8px;margin-bottom:10px}.search input{min-width:0;flex:1;background:var(--panel);border:1px solid var(--line);border-radius:13px;color:var(--text);padding:12px 13px;font:inherit;outline:none}.search input:focus{border-color:#777}.filters{display:flex;gap:7px;overflow-x:auto;padding:1px 0 9px;scrollbar-width:none}.filters button{border:1px solid var(--line);border-radius:18px;background:transparent;color:#c8c9cd;padding:7px 12px;white-space:nowrap;font-size:12px}.filters button.active{background:#e9c64d;color:#191a1b;border-color:#e9c64d;font-weight:700}.source-list{display:grid;gap:9px}.source{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:12px;text-decoration:none;color:inherit;min-height:70px}.source:active{background:#2a2b2d}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:#303133;display:grid;place-items:center;font-size:17px;font-weight:800;color:#e8c54b}.info{min-width:0;flex:1}.name{font-size:14px;font-weight:700;overflow-wrap:anywhere}.username{font-size:12px;color:var(--muted);margin-top:3px}.open{color:#a9aaae;font-size:20px;padding-left:4px}.empty{text-align:center;color:var(--muted);padding:24px 10px;display:none}.page{display:none}.page.active{display:block}.safety-card{border:1px solid var(--line);border-radius:17px;background:var(--panel);padding:15px;margin-bottom:10px}.safety-card h3{margin:0 0 6px;font-size:15px}.safety-card p{margin:0;color:#b6b7bc;font-size:13px}.safety-card a{display:inline-block;margin-top:12px;color:var(--yellow);text-decoration:none;font-size:13px;font-weight:700}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:10;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#171819ed;backdrop-filter:blur(18px);border-top:1px solid #292a2c}.nav{max-width:500px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:22px;background:#1d1e20;padding:5px}.nav button{border:0;background:transparent;color:#96989e;border-radius:15px;padding:8px 3px 7px;display:flex;flex-direction:column;align-items:center;gap:3px;font:inherit;font-size:10px}.nav button .ico{font-size:20px;line-height:1.2}.nav button.active{color:var(--text);background:#303133}.footnote{color:#777a80;font-size:11px;text-align:center;margin:18px 6px 0}
+</style></head><body>
+<header><div><h1>«МОНІТОР»</h1><div class="sub">Інформаційні джерела · Україна</div></div><div class="status">● ДЖЕРЕЛА</div></header>
+<main>
+<section id="home" class="page active">
+<div class="hero"><div class="hero-top"><div><h2>Інформаційна панель</h2><p>Швидкий доступ до Telegram-джерел та офіційних попереджень.</p></div><div class="shield">◈</div></div><div class="notice">Це каталог посилань, а не підтвердження достовірності повідомлень. Перевіряй важливу інформацію за офіційними джерелами.</div></div>
+<div class="section-head"><h2>Джерела Telegram</h2><span class="count" id="count">18 каналів</span></div>
+<div class="search"><input id="search" type="search" placeholder="Знайти канал…" autocomplete="off" aria-label="Знайти канал"></div>
+<div class="filters" id="filters"><button class="active" data-cat="all">Усі</button><button data-cat="dnipro">Дніпро</button><button data-cat="official">Офіційні</button><button data-cat="other">Інші</button></div>
+<div id="sources" class="source-list"></div><div class="empty" id="empty">Нічого не знайдено</div>
+<p class="footnote">Канали відкриваються в Telegram. Підписка не виконується автоматично.</p>
+</section>
+<section id="safety" class="page"><div class="section-head"><h2>Безпека</h2></div>
+<div class="safety-card"><h3>Під час повітряної тривоги</h3><p>Негайно прямуй до найближчого укриття та залишайся там до офіційного відбою. Не покладайся лише на повідомлення з неофіційних каналів.</p><a href="https://t.me/kpszsu" target="_blank" rel="noopener">Відкрити Повітряні Сили ↗</a></div>
+<div class="safety-card"><h3>Офіційні сповіщення</h3><p>Перевіряй оголошення місцевої влади та офіційних служб. Повідомлення з різних каналів можуть бути неперевіреними або застарілими.</p><a href="https://t.me/dnipro_alerts" target="_blank" rel="noopener">Відкрити сповіщення Дніпра ↗</a></div>
+<div class="safety-card"><h3>Не поширюй чутливі дані</h3><p>Не публікуй у реальному часі місця падіння, роботу ППО, точні координати чи фото, що можуть розкривати позиції служб.</p></div></section>
+<section id="about" class="page"><div class="section-head"><h2>Про застосунок</h2></div><div class="safety-card"><h3>Telegram Mini App</h3><p>Інтерфейс для швидкого відкриття вибраних джерел. Застосунок не підтверджує достовірність публікацій, не визначає місцезнаходження користувача та не відстежує маршрути об’єктів.</p></div><div class="safety-card"><h3>Додати канал</h3><p>Список у цій версії містить 18 каналів, заданих у коді. Щоб змінити його, відредагуй масив <b>SOURCES</b> у файлі index.html.</p></div></section>
+</main>
+<nav class="bottom"><div class="nav"><button class="active" data-page="home"><span class="ico">⌂</span><span>Головна</span></button><button data-page="safety"><span class="ico">◎</span><span>Безпека</span></button><button id="navSources"><span class="ico">◉</span><span>Джерела</span></button><button data-page="about"><span class="ico">☷</span><span>Інфо</span></button></div></nav>
+<script>
+const SOURCES = [
+ {name:'Дніпро Alerts',user:'dnipro_alerts',cat:'dnipro'},
+ {name:'Кучер Днепр / Дніпро',user:'kucher_dnepr_dnipro',cat:'dnipro'},
+ {name:'Radar Raketa',user:'radar_raketaa',cat:'other'},
+ {name:'Eyes Everywhere Dnipro',user:'eyes_everywhere_dnipro',cat:'dnipro'},
+ {name:'НІ і Дніпро',user:'ny_i_dnipro',cat:'dnipro'},
+ {name:'Повітряні Сили ЗС України',user:'kpszsu',cat:'official'},
+ {name:'eRadar UA',user:'eRadarrua',cat:'other'},
+ {name:'War Monitor',user:'war_monitor',cat:'other'},
+ {name:'Куди летить',user:'kudy_letyt',cat:'other'},
+ {name:'Monitor UA',user:'mon1tor_ua',cat:'other'},
+ {name:'Ukraine ПУХХ',user:'ukraine_pyxx',cat:'other'},
+ {name:'Aeris Rimor',user:'AerisRimor',cat:'other'},
+ {name:'Повітряна тривога',user:'povitryanatrivogaaa',cat:'other'},
+ {name:'UA Radar Rakет',user:'ua_radar_raket',cat:'other'},
+ {name:'Monitor Warr',user:'monitorwarr',cat:'other'},
+ {name:'Ракета Тривога',user:'raketa_trevoga',cat:'other'},
+ {name:'Тривога? Чому?',user:'tryvoga_chomu',cat:'other'},
+ {name:'Де ракета UA',user:'deraketaua',cat:'other'}
+];
+const tg = window.Telegram?.WebApp; if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#171819');tg.setBackgroundColor('#171819')}catch(e){}}
+let activeCat='all'; const list=document.getElementById('sources'),search=document.getElementById('search'),count=document.getElementById('count'),empty=document.getElementById('empty');
+function render(){const q=search.value.trim().toLowerCase();const arr=SOURCES.filter(s=>(activeCat==='all'||s.cat===activeCat)&&(s.name+' '+s.user).toLowerCase().includes(q));list.innerHTML='';arr.forEach(s=>{const a=document.createElement('a');a.className='source';a.href='https://t.me/'+s.user;a.target='_blank';a.rel='noopener';a.innerHTML=`<div class="avatar">${s.user.slice(0,1).toUpperCase()}</div><div class="info"><div class="name"></div><div class="username"></div></div><div class="open">›</div>`;a.querySelector('.name').textContent=s.name;a.querySelector('.username').textContent='@'+s.user;list.appendChild(a)});count.textContent=arr.length+' із '+SOURCES.length;empty.style.display=arr.length?'none':'block'}
+document.querySelectorAll('#filters button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeCat=b.dataset.cat;render()}));search.addEventListener('input',render);
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id||(id==='home'&&b.id==='navSources')));if(id==='home'){search.blur();}}
+document.querySelectorAll('.nav button[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.getElementById('navSources').addEventListener('click',()=>{showPage('home');document.getElementById('search').focus({preventScroll:true});window.scrollTo({top:0,behavior:'smooth'})});render();
+</script></body></html>
